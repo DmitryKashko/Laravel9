@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\BlockController;
+use App\Http\Controllers\Web\DownloadController;
 use App\Http\Controllers\Web\MainController;
 use App\Http\Controllers\Web\ProjectController;
 use App\Http\Controllers\Web\UserController;
@@ -45,6 +46,10 @@ Route::group(['namespace' => 'Web', 'middleware' => 'guest'], function () {
     Route::post('/login', [UserController::class, 'login'])->name('login');
 });
 
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/download', [DownloadController::class, 'downloads'])->name('download');
+});
 
 
 

@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -20,6 +21,7 @@ class MainController extends Controller
 
         $projects = Project::whereIn('id', $projects)->get();
 
+
         /*$file =Storage::download('file.jpg');*/
 
         return view('welcome', compact('projects'));
@@ -30,6 +32,34 @@ class MainController extends Controller
         $blocks = Block::where('project_id', $id)->paginate(5);
         $users = DB::table('users')->join('project_user_role as pur', 'users.id', '=', 'pur.user_id' )->where('project_id', '=', $id)->pluck('user_id')->all();
         $users = User::whereIn('id', $users)->paginate(5);
+
+
+        foreach ($blocks as $block) {
+            $files = explode(", ", $block->file);
+
+            foreach ($files as $file) {
+                $file_path[] = response()->download('uploads/' . $file);
+            }
+
+            $block->file = $file_path;
+
+            /*dd($file_path[0]->getFile()->getPathname());*/
+            /*return $file_path[0]->setPublic();*/
+            $file_path = [];
+
+            /*return $file_path[0]->setPublic();
+            dd($file_path[0]->getfile());*/
+
+
+            /*$file_path = response()->download('uploads/' . $file);
+            dd($file_path->getFile()->getFilename());*/
+
+            /*$file_path = public_path('uploads/'.$block->file);
+            response()->download($file_path);*/
+
+            /*return $file_path;
+            dd(response()->download('uploads/'.$files[0]));*/
+        }
         return view('show', compact('blocks', 'users'));
     }
 }

@@ -60,7 +60,17 @@
                                         <td>{{ $block->id }}</td>
                                         <td>{{ $block->title }}</td>
                                         <td>{{ $block->description }}</td>
-                                        <td>{{ $block->file }}</td>
+                                        <td>
+                                            @foreach($block->file as $download)
+                                                <a href="{{ route('download', $download->getFile()->getPathname()) }}" download>{{ $download->getFile()->getFilename() }}</a>
+                                                <br>
+                                            @endforeach
+
+
+                                        </td>
+
+
+                                        {{--<td>{{ $block->file}}}</td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
