@@ -20,7 +20,7 @@ class MainController extends Controller
 
         $projects = Project::whereIn('id', $projects)->get();
 
-
+        /*$file =Storage::download('file.jpg');*/
 
         return view('welcome', compact('projects'));
     }

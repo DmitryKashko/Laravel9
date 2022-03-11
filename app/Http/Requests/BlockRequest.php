@@ -26,7 +26,7 @@ class BlockRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'required|string',
-            'file' => 'nullable|array',
+            'file' => 'nullable',
             'project_id' => 'required|integer|exists:projects,id',
         ];
     }
