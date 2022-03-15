@@ -65,17 +65,14 @@
                                                 <a href="{{ route('download', $download->getFile()->getPathname()) }}" download>{{ $download->getFile()->getFilename() }}</a>
                                                 <br>
                                             @endforeach
-
-
                                         </td>
-
-
                                         {{--<td>{{ $block->file}}}</td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
+
                         <div class="col-sm-5 offset-sm-2 col-md-2 offset-md-0">
                             <table class="table table-bordered">
                                 <thead>
@@ -92,6 +89,11 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        {{--<div class="col-sm-5">
+                            --}}{{--@dd($project)--}}{{--
+                            <a href="{{ route('zipDownload', $project) }}">Скачать</a>
+                        </div>--}}
                     </div>
                 </dic>
 

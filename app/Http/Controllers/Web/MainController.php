@@ -33,10 +33,11 @@ class MainController extends Controller
         $users = DB::table('users')->join('project_user_role as pur', 'users.id', '=', 'pur.user_id' )->where('project_id', '=', $id)->pluck('user_id')->all();
         $users = User::whereIn('id', $users)->paginate(5);
 
+        global $project;
 
         foreach ($blocks as $block) {
             $files = explode(", ", $block->file);
-
+            $project = $block->project_id;
             foreach ($files as $file) {
                 $file_path[] = response()->download('uploads/' . $file);
             }
@@ -60,6 +61,7 @@ class MainController extends Controller
             /*return $file_path;
             dd(response()->download('uploads/'.$files[0]));*/
         }
-        return view('show', compact('blocks', 'users'));
+
+        return view('show', compact('blocks', 'users', 'project'));
     }
 }
