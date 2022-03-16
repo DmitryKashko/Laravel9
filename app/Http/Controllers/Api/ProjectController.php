@@ -17,7 +17,7 @@ class ProjectController extends Controller
     public function index()
     {
         /*return Project::all();*/
-        return ProjectResource::collection(Project::all());
+        return ProjectResource::collection(Project::with('blocks')->get());
     }
 
     /**
@@ -39,9 +39,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return ProjectResource|\Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
-        return new ProjectResource($project);
+        return new ProjectResource(Project::findOrFail($id));
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectResource extends JsonResource
+class BlockResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,8 @@ class ProjectResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'file' => $this->file,
             'created_at' => $this->created_at,
-            'blocks' => BlockResource::collection($this->blocks),
         ];
     }
 }
