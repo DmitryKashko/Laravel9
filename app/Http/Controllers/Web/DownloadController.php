@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Block;
 use Illuminate\Http\Request;
 use ZanySoft\Zip\Zip;
 use ZipArchive;
 
+
 class DownloadController extends Controller
 {
-
-
-
     public function downloads(Request $request): \Symfony\Component\HttpFoundation\BinaryFileResponse
+
     {
 
         $path = $request->server->all();
@@ -21,6 +21,7 @@ class DownloadController extends Controller
 
         return response()->download($path['QUERY_STRING']);
     }
+
 
     /*public function zipDownload(Request $request)
     {

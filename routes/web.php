@@ -37,10 +37,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/download', [DownloadController::class, 'downloads'])->name('download');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
+
     Route::resources([
         '/projects' => ProjectController::class,
         '/blocks' => BlockController::class,
     ]);
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/download', [DownloadController::class, 'downloads'])->name('download');
+});
+
+
 
     Route::group(['middleware' => 'admin'], function () {
         Route::resources([

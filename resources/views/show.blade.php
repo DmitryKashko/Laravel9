@@ -65,7 +65,15 @@
                                                 <a href="{{ route('download', $download->getFile()->getPathname()) }}" download>{{ $download->getFile()->getFilename() }}</a>
                                                 <br>
                                             @endforeach
+
                                         </td>
+
+
+
+                                        </td>
+
+
+
                                         {{--<td>{{ $block->file}}}</td>--}}
                                     </tr>
                                 @endforeach
