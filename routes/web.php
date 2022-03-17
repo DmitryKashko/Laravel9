@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         '/projects' => ProjectController::class,
         '/blocks' => BlockController::class,
+        '/roles' => BlockController::class,
     ]);
 
 Route::group(['middleware' => 'auth'], function () {

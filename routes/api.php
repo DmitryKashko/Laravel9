@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\BlockController;
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +29,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResources([
     'apiProjects' => ProjectController::class,
     'apiBlocks' => BlockController::class,
+    'apiUsers' => UserController::class,
+    'apiRoles' => RoleController::class,
 ]);
+
+Route::get('/apiMains', [\App\Http\Controllers\Api\MainController::class, 'index']);
