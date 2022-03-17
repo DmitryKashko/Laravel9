@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlockRequest;
 use App\Http\Resources\BlockResource;
 use App\Models\Block;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class BlockController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
@@ -25,16 +26,19 @@ class BlockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlockRequest $request)
     {
-        //
+
+        $created_block = Block::create($request->validated());
+
+        return new BlockResource($created_block);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return BlockResource|\Illuminate\Http\Response
+     * @return BlockResource
      */
     public function show($id)
     {
@@ -48,9 +52,12 @@ class BlockController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlockRequest $request, $id)
     {
-        //
+        $block = Block::find($id);
+        $block->update($request->validated());
+
+        return new BlockResource($block);
     }
 
     /**
@@ -61,6 +68,6 @@ class BlockController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Block::destroy($id);
     }
 }

@@ -51,8 +51,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return ProjectResource
      */
-    public function update(ProjectRequest $request, Project $project)
+    public function update(ProjectRequest $request, $id)
     {
+        /*dd($request);*/
+        $project = Project::find($id);
         $project->update($request->validated());
 
         return new ProjectResource($project);
@@ -64,10 +66,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        $project->delete();
 
-        return response()->noContent();
+
+        return Project::destroy($id);
     }
 }

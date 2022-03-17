@@ -20,6 +20,7 @@ class BlockResource extends JsonResource
             'description' => $this->description,
             'file' => $this->file,
             'created_at' => $this->created_at,
+            'project_id' => $this->project_id,
         ];
     }
 }
