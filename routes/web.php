@@ -19,12 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/', function () {
+    return view('home');
+});
 
 
-Route::group(['middleware' => 'guest'], function () {
+
+
+
+/*Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [UserController::class, 'create'])->name('register.create');
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
     Route::get('/login', [UserController::class, 'loginForm'])->name('login.creat');
@@ -57,3 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
