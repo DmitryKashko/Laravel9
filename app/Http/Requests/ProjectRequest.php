@@ -26,12 +26,6 @@ class ProjectRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'required|string',
-            'role1_id' => 'nullable',
-            'role2_id' => 'nullable',
-            'users1' => 'nullable|array',
-            'users1.*' => 'integer|exists:users,id',
-            'users2' => 'nullable|array',
-            'users2.*' => 'integer|exists:users,id',
         ];
     }
 

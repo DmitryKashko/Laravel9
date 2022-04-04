@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +24,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*Route::group(['namespace' => 'Api'], function () {
-    Route::apiResource('projects', 'ProjectController', array("as" => "api"));
-});*/
 
+
+Route::apiResources([
+    'projects' => ProjectController::class,
+]);
+
+Route::get('/', [IndexController::class, 'index']);
+
+
+
+
+
+
+
+
+/*
 Route::apiResources([
     'apiProjects' => ProjectController::class,
     'apiBlocks' => BlockController::class,
@@ -45,4 +58,22 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
-});
+});*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Route::group(['namespace' => 'Api'], function () {
+    Route::apiResource('projects', 'ProjectController', array("as" => "api"));
+});*/

@@ -18,8 +18,8 @@ class ProjectResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'created_at' => $this->created_at,
-            'blocks' => BlockResource::collection($this->blocks),
+/*            'created_at' => $this->created_at,
+            'blocks' => BlockResource::collection($this->blocks),*/
         ];
     }
 }

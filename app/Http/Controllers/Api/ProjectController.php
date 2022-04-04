@@ -16,8 +16,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        /*return Project::all();*/
-        return ProjectResource::collection(Project::get());
+        /*return Project::all();
+        return ProjectResource::collection(Project::get());*/
+
+        $people = Project::all();
+        return $people;
     }
 
     /**
@@ -37,11 +40,12 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return ProjectResource|\Illuminate\Http\Response
+     * @return ProjectResource|Project|\Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        return new ProjectResource(Project::findOrFail($id));
+        /*return new ProjectResource(Project::findOrFail($id));*/
+        return $project;
     }
 
     /**
@@ -51,11 +55,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return ProjectResource
      */
-    public function update(ProjectRequest $request, $id)
+    public function update(ProjectRequest $request, Project $project)
     {
         /*dd($request);*/
-        $project = Project::find($id);
-        $project->update($request->validated());
+        $data = $request->validated();
+        $project->update($data);
 
         return new ProjectResource($project);
     }
